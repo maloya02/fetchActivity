@@ -25,6 +25,9 @@
         <div class="row">
             <div class="col">
                 <!-- Table to display movies -->
+                <div class="my-3">
+                    <input type="text" class="form-control border-0 border-bottom" id="searchInput" placeholder="Search movies using title, description and genre">
+                </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -247,12 +250,47 @@
                 // Fetch movies from API and store in localStorage
                 await fetch(`${url}/movies`)
                     .then(response => response.json())
-                    .then(movies => localStorage.setItem("movies", JSON.stringify(movies)))
+                    .then(movies => {
+                        const list = movies.map((movie) => {
+                            movie.genreTitle = getGenreTitle(movie.genre)
+                            return movie
+                        })
+                        localStorage.setItem("movies", JSON.stringify(list))
+                    })
                     .catch(error => console.log(error))
             }
 
             const movies = JSON.parse(localStorage.getItem("movies"))
+            generateTableMovies(movies)
 
+            const searchInput = document.getElementById("searchInput")
+            searchInput.addEventListener("keyup", (event) => {
+                const searchTerm = event.target.value
+
+                if(searchTerm.length >= 3) {
+                    const options = {
+                        includeScore: true,
+                        keys: ['title', 'description', 'genreTitle']
+                    }
+
+                    const fuse = new Fuse(movies, options)
+
+                    const result = fuse.search(searchTerm)
+                    const searchResult = result.map(row => row.item)
+                    console.log(result)
+                    generateTableMovies(searchResult)
+                } else {
+                    generateTableMovies(movies)
+                }
+            })
+
+
+            
+        }
+        // Call the function to get movies
+        getMovies()
+
+        function generateTableMovies(movies) {
             const movieTableBody = document.getElementById('movieTableBody')
             movieTableBody.innerHTML = ''
             let rows = ''
@@ -264,7 +302,7 @@
                             <td>
                                 <a href="view.html?id=${movies[i]._id}">${movies[i].title}</a>    
                             </td>
-                            <td>${getGenreTitle(movies[i].genre)}</td>
+                            <td>${movies[i].genreTitle}</td>
                             <td>${movies[i].release_date}</td>
                             <td>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -279,8 +317,6 @@
 
             movieTableBody.innerHTML = rows
         }
-        // Call the function to get movies
-        getMovies()
 
         // Function to open the new movie modal
         const openNewMovieModal = () => {
@@ -296,8 +332,8 @@
             const genre = document.getElementById('genre').value
             const title = document.getElementById('title').value
             const description = document.getElementById('description').value
-            const addPoster = document.getElementById('addPosterUrl').value
             const release_date = document.getElementById('release_date').value
+            const addPoster = document.getElementById('addPosterUrl').value
 
             // Send a POST request to create a new movie
             fetch(`${url}/movies`, {
@@ -325,8 +361,8 @@
                     // Clear form input fields
                     document.getElementById('title').value = ''
                     document.getElementById('description').value = ''
-                    document.getElementById('addPosterUrl').value = ''
                     document.getElementById('release_date').value = ''
+                    document.getElementById('addPosterUrl').value = ''
                 })
                 .catch(error => {
                     console.log(error)
@@ -374,6 +410,7 @@
                 document.getElementById('updateMovieTitle').value = selectedMovie.title
                 document.getElementById('updateMovieDescription').value = selectedMovie.description
                 document.getElementById('updateMovieReleaseDate').value = selectedMovie.release_date
+                document.getElementById('addPosterUrl').value = selectedMovie.addPosterUrl
                 
                 const updateMovieModal = bootstrap.Modal.getOrCreateInstance("#updateMovieModal")
                 updateMovieModal.show()
@@ -389,8 +426,8 @@
             const genre = document.getElementById('updateMovieGenre').value
             const title = document.getElementById('updateMovieTitle').value
             const description = document.getElementById('updateMovieDescription').value
-            const updatePoster = document.getElementById('updatePosterUrl').value
             const release_date = document.getElementById('updateMovieReleaseDate').value
+            const updatePoster = document.getElementById('updatePosterUrl').value
 
             // Send a POST request to create a new movie
             fetch(`${url}/movies/${id}`, {
@@ -419,8 +456,8 @@
                     document.getElementById('updateMovieGenre').value = ''
                     document.getElementById('updateMovieTitle').value = ''
                     document.getElementById('updateMovieDescription').value = ''
-                    document.getElementById('updatePosterUrl').value = ''
                     document.getElementById('updateMovieReleaseDate').value = ''
+                    document.getElementById('updatePosterUrl').value = ''
                 })
                 .catch(error => {
                     console.log(error)
@@ -468,7 +505,12 @@
                 .catch(error => {
                     console.log(error)
                 })
+                
         })
+
+        const search = (event) => {
+            
+        }
     </script>
 </body>
 

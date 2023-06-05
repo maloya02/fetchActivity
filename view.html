@@ -18,6 +18,10 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
+        h3{
+            font-style: italic;
+        }
+
         .content {
             flex: 1;
         }
@@ -51,10 +55,9 @@
             line-height: 1.5;
         }
 
-        h3{
+        #updateMovieReleaseDate{
             font-style: italic;
         }
-
     </style>
     
 </head>
@@ -70,13 +73,9 @@
                 </div>
                 <div class="details">
                     <h1 id="movieId"></h1>
-                    <div class="mb-3">
-                        <label for="updateMovieReleaseDate" class="form-label">Release Date</label>
-                        <input type="date" class="form-control" name="updateMovieReleaseDate"
-                            id="updateMovieReleaseDate" required>
-                    </div>
+                    <p id="updateMovieReleaseDate"></p>
                     <p id="description">Synopsis</p>
-                    <h3 id="updateMovieGenre">Genre</h3>
+                    <h3 id="updateMovieGenre">Sci-Fi</h3>
                 </div>
             </div>
         </div>
@@ -89,14 +88,11 @@
     const movies = JSON.parse(localStorage.getItem('movies'));
     const movie = movies.find(movie => movie._id === movieId);
 
-    const genres = JSON.parse(localStorage.getItem('genres'));
-    const genreTitle = genres.find(genre => genre._id === movie.genre).title;
-
     document.getElementById('movieId').innerText = movie.title;
     document.getElementById('description').innerText = movie.description;
-    document.getElementById('updateMovieGenre').innerText = genreTitle;
+    document.getElementById('updateMovieGenre').innerText = movie.title;
     document.getElementById('addPosterUrl').src = movie.updatePoster;
-    document.getElementById('updateMovieReleaseDate').value = movie.release_date;
+    document.getElementById('updateMovieReleaseDate').innerText = movie.release_date;
 </script>
 
 </html>
