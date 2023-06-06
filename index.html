@@ -9,7 +9,7 @@
 
     <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">  
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 
 <body>
@@ -25,12 +25,13 @@
         <!-- Search Bar -->
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" id="searchInput" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Search</button>
-              </form>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" id="searchInput" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
             </div>
-          </nav>
+        </nav>
 
         <div class="row">
             <div class="col">
@@ -61,7 +62,7 @@
     </div>
 
     <!-- Modal for creating a new movie -->
-    
+
     <div class="modal" tabindex="-1" id="newMovieModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -98,7 +99,7 @@
                             <input type="date" class="form-control" name="release_date" id="release_date" required>
                         </div>
 
-                        
+
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -122,18 +123,20 @@
 
                         <div class="mb-3">
                             <label for="updateMovieGenre" class="form-label">Genre</label>
-                            <select class="form-select" name="updateMovieGenre" id="updateMovieGenre" aria-label=""></select>
+                            <select class="form-select" name="updateMovieGenre" id="updateMovieGenre"
+                                aria-label=""></select>
                         </div>
 
                         <div class="mb-3">
                             <label for="updateMovieTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" name="updateMovieTitle" id="updateMovieTitle" required>
+                            <input type="text" class="form-control" name="updateMovieTitle" id="updateMovieTitle"
+                                required>
                         </div>
 
                         <div class="mb-3">
                             <label for="updateMovieDescription" class="form-label">Description</label>
-                            <textarea name="updateMovieDescription" id="updateMovieDescription" cols="30" rows="10" class="form-control"
-                                required></textarea>
+                            <textarea name="updateMovieDescription" id="updateMovieDescription" cols="30" rows="10"
+                                class="form-control" required></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -166,13 +169,13 @@
                     <form id="newGenreForm">
                         <div class="mb-3">
                             <label for="genreTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" name="genreTitle" id="genreTitle" aria-label=""/>
+                            <input type="text" class="form-control" name="genreTitle" id="genreTitle" aria-label="" />
                         </div>
 
                         <div class="mb-3">
                             <label for="genreDescription" class="form-label">Description</label>
-                            <textarea name="genreDescription" id="genreDescription" cols="30" rows="10" class="form-control"
-                                required></textarea>
+                            <textarea name="genreDescription" id="genreDescription" cols="30" rows="10"
+                                class="form-control" required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -193,6 +196,57 @@
     <script>
         // API URL for CRUD operations
         const url = ' https://647eff7bc246f166da8fdb07.mockapi.io'
+
+
+        // June 6 New function
+        const getNewMovies = async () => {
+            // Fetch movies data from the API
+            const response = await fetch(`${url}/movies`);
+            const movies = await response.json();
+
+            // Format movies data by adding genre titles using asynchronous operations
+            const formatMovies = async () => {
+                return Promise.all(movies.map(async (movie) => {
+                    // Add a new property "genreTitle" to each movie, obtained by fetching the genre title
+                    movie.genreTitle = await getGenreTitle(movie.genre);
+                    return movie;
+                }));
+            };
+
+            // Format the movies and generate a table to display them
+            const list = await formatMovies();
+            generateTableMovies(list);
+
+            // Listen for user input in the search input field
+            const searchInput = document.getElementById("searchInput");
+            searchInput.addEventListener("keyup", async (event) => {
+                const searchTerm = event.target.value;
+
+                if (searchTerm.length >= 3) {
+                    // Set options for fuzzy search using the Fuse.js library
+                    const options = {
+                        includeScore: true,
+                        keys: ['title', 'description', 'genreTitle']
+                    };
+
+                    // Create a Fuse instance with the movies data and search options
+                    const fuse = new Fuse(movies, options);
+
+                    // Perform a fuzzy search with the provided search term
+                    const result = fuse.search(searchTerm);
+                    const searchResult = result.map(row => row.item);
+
+                    // Generate a table to display the search results
+                    console.log(result);
+                    await generateTableMovies(searchResult);
+                } else {
+                    // Generate a table to display the original movie list
+                    await generateTableMovies(list);
+                }
+            });
+        };
+        // June 6 New function end
+
 
         // Function to get genres from API or localStorage
         const getGenres = async () => {
@@ -228,8 +282,8 @@
 
             genreDropdown.addEventListener("change", (event) => {
                 const selectedGenreOption = event.target.value
-                
-                if(selectedGenreOption === 'new_genre_option') {
+
+                if (selectedGenreOption === 'new_genre_option') {
                     const newMovieModal = bootstrap.Modal.getOrCreateInstance("#newMovieModal")
                     newMovieModal.hide()
 
@@ -248,7 +302,7 @@
 
             // Find the index of the genre with the given ID
             const index = genres.map(genre => genre._id).indexOf(id)
-            if(index > -1) {
+            if (index > -1) {
                 title = genres[index].title
             }
             return title
@@ -277,7 +331,7 @@
             searchInput.addEventListener("keyup", (event) => {
                 const searchTerm = event.target.value
 
-                if(searchTerm.length >= 3) {
+                if (searchTerm.length >= 3) {
                     const options = {
                         includeScore: true,
                         keys: ['title', 'description', 'genreTitle']
@@ -295,7 +349,7 @@
             })
 
 
-            
+
         }
         // Call the function to get movies
         getMovies()
@@ -409,7 +463,7 @@
                 // Find the index of the movie with the given movieId
                 const index = movies.map(movie => movie._id).indexOf(movieId)
                 const selectedMovie = movies[index]
-                
+
                 // Get new movie genre dropdown
                 const newMovieGenreDropdown = document.getElementById('genre')
 
@@ -421,7 +475,7 @@
                 document.getElementById('updateMovieDescription').value = selectedMovie.description
                 document.getElementById('updateMovieReleaseDate').value = selectedMovie.release_date
                 document.getElementById('poster_url').value = selectedMovie.poster_url
-                
+
                 const updateMovieModal = bootstrap.Modal.getOrCreateInstance("#updateMovieModal")
                 updateMovieModal.show()
             })
@@ -515,11 +569,11 @@
                 .catch(error => {
                     console.log(error)
                 })
-                
+
         })
 
         const search = (event) => {
-            
+
         }
     </script>
 </body>

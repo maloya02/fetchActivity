@@ -103,3 +103,235 @@
         }
     ]
 }
+
+   { "movies": [
+      {
+        "title": "Black Widow",
+        "description": "Natasha Romanoff, also known as Black Widow, confronts the darker parts of her past when a dangerous conspiracy arises.",
+        "release_date": "2021-07-09",
+        "genre": "Action"
+      },
+      {
+        "title": "No Time to Die",
+        "description": "James Bond comes out of retirement to rescue a kidnapped scientist, leading him onto the trail of a mysterious villain armed with dangerous new technology.",
+        "release_date": "2021-09-30",
+        "genre": "Action"
+      },
+      {
+        "title": "Dune",
+        "description": "Paul Atreides leads nomadic tribes in a battle to control the desert planet Arrakis and its valuable resource.",
+        "release_date": "2021-10-21",
+        "genre": "Science Fiction"
+      },
+      {
+        "title": "Spider-Man: No Way Home",
+        "description": "Peter Parker's world turns upside down when familiar villains from alternate dimensions threaten to destroy reality.",
+        "release_date": "2021-12-17",
+        "genre": "Action"
+      },
+      {
+        "title": "A Quiet Place Part II",
+        "description": "The Abbott family continues to face terrors from the outside world as they navigate the silent survival in their post-apocalyptic reality.",
+        "release_date": "2021-05-28",
+        "genre": "Horror"
+      },
+      {
+        "title": "Fast & Furious 9",
+        "description": "Dominic Toretto and his crew face their most skilled enemy yet, his forsaken brother, Jakob.",
+        "release_date": "2021-06-25",
+        "genre": "Action"
+      },
+      {
+        "title": "Cruella",
+        "description": "Estella, a young fashion-obsessed orphan, becomes the iconic villain Cruella de Vil in 1970s London.",
+        "release_date": "2021-05-28",
+        "genre": "Comedy"
+      },
+      {
+        "title": "Jungle Cruise",
+        "description": "A riverboat captain and a scientist embark on an adventure to find a magical tree in the heart of the Amazon rainforest.",
+        "release_date": "2021-07-30",
+        "genre": "Adventure"
+      },
+      {
+        "title": "The Suicide Squad",
+        "description": "A team of supervillains is sent on a dangerous mission to a South American island filled with enemies.",
+        "release_date": "2021-08-06",
+        "genre": "Action"
+      },
+      {
+        "title": "The Conjuring: The Devil Made Me Do It",
+        "description": "Paranormal investigators Ed and Lorraine Warren uncover a chilling story of terror, murder, and unknown evil.",
+        "release_date": "2021-06-04",
+        "genre": "Horror"
+      },
+      {
+        "title": "Shang-Chi and the Legend of the Ten Rings",
+        "description": "Shang-Chi, a skilled martial artist, is drawn into the web of the mysterious Ten Rings organization.",
+        "release_date": "2021-09-03",
+        "genre": "Action"
+      },
+      {
+        "title": "The Matrix Resurrections",
+        "description": "Neo awakens in a world where humans are unaware of the Matrix and must embark on a journey to reclaim his identity.",
+        "release_date": "2021-12-22",
+        "genre": "Science Fiction"
+      },
+      {
+        "title": "Free Guy",
+        "description": "A bank teller discovers he is a background character in an open-world video game and decides to become the hero of his own story.",
+        "release_date": "2021-08-13",
+        "genre": "Action"
+      },
+      {
+        "title": "Ghostbusters: Afterlife",
+        "description": "A single mom and her two kids uncover the legacy of the Ghostbusters and the secrets left behind by their grandfather.",
+        "release_date": "2021-11-19",
+        "genre": "Comedy"
+      },
+      {
+        "title": "Venom: Let There Be Carnage",
+        "description": "Eddie Brock struggles to coexist with the shape-shifting alien symbiote as they face a new threat, the psychotic Carnage.",
+        "release_date": "2021-09-24",
+        "genre": "Action"
+      },
+      {
+        "title": "Luca",
+        "description": "Two young sea monsters experience a life-changing summer on the Italian Riviera.",
+        "release_date": "2021-06-18",
+        "genre": "Animation"
+      },
+      {
+        "title": "Candyman",
+        "description": "A visual artist uncovers the true story behind the myth of Candyman, a ghostly killer with a hook for a hand.",
+        "release_date": "2021-08-27",
+        "genre": "Horror"
+      },
+      {
+        "title": "Cry Macho",
+        "description": "A one-time rodeo star takes a job to bring back his employer's young son, crossing paths with dangerous characters along the way.",
+        "release_date": "2021-09-17",
+        "genre": "Drama"
+      },
+      {
+        "title": "Judas and the Black Messiah",
+        "description": "The story of Fred Hampton, a young charismatic activist, and his betrayal by an FBI informant.",
+        "release_date": "2021-02-12",
+        "genre": "Biography"
+      },
+      {
+        "title": "The French Dispatch",
+        "description": "A love letter to journalists set in an outpost of an American newspaper in a fictional 20th-century French city.",
+        "release_date": "2021-10-22",
+        "genre": "Comedy"
+      },
+      {
+        "title": "Old",
+        "description": "A family on a tropical vacation discovers that the secluded beach they are visiting causes them to age rapidly.",
+        "release_date": "2021-07-23",
+        "genre": "Thriller"
+      },
+      {
+        "title": "The Green Knight",
+        "description": "A medieval fantasy adventure based on the Arthurian legend of Sir Gawain and the Green Knight.",
+        "release_date": "2021-07-30",
+        "genre": "Fantasy"
+      },
+      {
+        "title": "Nomadland",
+        "description": "A woman in her sixties embarks on a journey through the American West, living as a modern-day nomad.",
+        "release_date": "2021-02-19",
+        "genre": "Drama"
+      },
+      {
+        "title": "Minari",
+        "description": "A Korean-American family moves to Arkansas in search of their own American Dream.",
+        "release_date": "2021-02-12",
+        "genre": "Drama"
+      },
+      {
+        "title": "The Mitchells vs. the Machines",
+        "description": "A quirky family embarks on a road trip to save humanity from a robot uprising.",
+        "release_date": "2021-04-30",
+        "genre": "Animation"
+      },
+      {
+        "title": "Cruel Summer",
+        "description": "The chilling story of a popular teen girl who goes missing and the aftermath that follows.",
+        "release_date": "2021-04-20",
+        "genre": "Thriller"
+      },
+      {
+        "title": "Godzilla vs. Kong",
+        "description": "The epic clash between two titans, Godzilla and Kong, as the world watches to see who will become the king of monsters.",
+        "release_date": "2021-03-31",
+        "genre": "Action"
+      },
+      {
+        "title": "Mortal Kombat",
+        "description": "A washed-up mixed martial arts fighter becomes Earth's champion in a high-stakes tournament against otherworldly adversaries.",
+        "release_date": "2021-04-23",
+        "genre": "Action"
+      },
+      {
+        "title": "Raya and the Last Dragon",
+        "description": "A young warrior embarks on a quest to find the last dragon and save her kingdom from an ancient evil.",
+        "release_date": "2021-03-05",
+        "genre": "Animation"
+      },
+      {
+        "title": "The Father",
+        "description": "A man refuses all assistance from his daughter as he ages, grappling with his changing circumstances and his own mind.",
+        "release_date": "2021-02-26",
+        "genre": "Drama"
+      },
+      {
+        "title": "Soul",
+        "description": "A musician who has lost his passion for music is transported out of his body and must find his way back with the help of an infant soul.",
+        "release_date": "2021-12-25",
+        "genre": "Animation"
+      }
+    ],}
+    "genres": [
+      {
+        "title": "Action",
+        "description": "Movies that involve exciting and fast-paced sequences, often featuring physical stunts, combat, and adventurous storylines."
+      },
+      {
+        "title": "Science Fiction",
+        "description": "Movies that explore imaginative and futuristic concepts, often involving advanced technology, space exploration, and speculative ideas."
+      },
+      {
+        "title": "Horror",
+        "description": "Movies that aim to elicit fear, suspense, and shock, often featuring supernatural elements, monsters, or psychological thrills."
+      },
+      {
+        "title": "Comedy",
+        "description": "Movies intended to amuse and entertain through humor, wit, and comedic situations, often delivering light-hearted and funny narratives."
+      },
+      {
+        "title": "Adventure",
+        "description": "Movies that involve thrilling journeys, exploration of new territories, and exciting quests, often featuring heroic protagonists."
+      },
+      {
+        "title": "Animation",
+        "description": "Movies created using animation techniques, involving the use of artwork or computer-generated imagery to tell stories and bring characters to life."
+      },
+      {
+        "title": "Drama",
+        "description": "Movies that focus on realistic and emotional storytelling, often delving into complex characters, relationships, and human experiences."
+      },
+      {
+        "title": "Biography",
+        "description": "Movies that depict the life stories of real people, often exploring their achievements, struggles, and significant events from their lives."
+      },
+      {
+        "title": "Thriller",
+        "description": "Movies that generate suspense, tension, and excitement, often involving intense and unpredictable plots with thrilling twists and turns."
+      },
+      {
+        "title": "Fantasy",
+        "description": "Movies that feature elements of magic, mythical creatures, and supernatural phenomena, often set in imaginative and fantastical worlds."
+      }
+    ]
+  
