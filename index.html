@@ -140,13 +140,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="updatePosterUrl" class="form-label">Poster Url</label>
-                            <input type="url" class="form-control" name="updatePosterUrl" id="updatePosterUrl" required>
+                            <label for="poster_url" class="form-label">Poster Url</label>
+                            <input type="url" class="form-control" name="poster_url" id="poster_url" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="poster_url" class="form-label">Release Date</label>
-                            <input type="date" class="form-control" name="poster_url" id="poster_url" required>
+                            <label for="updateMovieReleaseDate" class="form-label">Release Date</label>
+                            <input type="date" class="form-control" name="updateMovieReleaseDate" id="updateMovieReleaseDate" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>
@@ -195,7 +195,7 @@
     <!-- JavaScript code -->
     <script>
         // API URL for CRUD operations
-        const url = ' https://647eff7bc246f166da8fdb07.mockapi.io'
+        const url = 'https://647eff7bc246f166da8fdb07.mockapi.io'
 
 
         // June 6 New function
@@ -382,6 +382,79 @@
             movieTableBody.innerHTML = rows
         }
 
+        //New code for edit
+
+        // // Function to open the update movie modal
+        // const openUpdateMovieModal = async (movieId) => {
+        //     // Fetch the movie data from the API
+        //     const response = await fetch(`${url}/movies/${movieId}`);
+        //     const movie = await response.json();
+
+        //     // Populate the update movie form with the movie data
+        //     document.getElementById('updateMovieId').value = movie._id;
+        //     document.getElementById('updateMovieGenre').value = movie.genre;
+        //     document.getElementById('updateMovieTitle').value = movie.title;
+        //     document.getElementById('updateMovieDescription').value = movie.description;
+        //     document.getElementById('updatePosterUrl').value = movie.poster_url;
+        //     document.getElementById('updateReleaseDate').value = movie.release_date;
+
+        //     // Show the update movie modal
+        //     const updateMovieModal = bootstrap.Modal.getOrCreateInstance("#updateMovieModal");
+        //     updateMovieModal.show();
+
+        //     // Add an event listener to the update button inside the modal
+        //     const updateButton = document.getElementById('updateMovieButton');
+        //     updateButton.addEventListener('click', async () => {
+        //         await updateMovie(movieId);
+        //     });
+        // };
+
+        // // Event listener for the edit movie button
+        // document.getElementById('movieTableBody').addEventListener('click', async (event) => {
+        //     if (event.target.classList.contains('editMovieButton')) {
+        //         const movieId = event.target.getAttribute('data-movie');
+        //         await openUpdateMovieModal(movieId);
+        //     }
+        // });
+
+        // // Function to update a movie
+        // const updateMovie = async (movieId) => {
+        //     // Get the updated movie data from the form
+        //     const updatedMovie = {
+        //         genre: document.getElementById('updateMovieGenre').value,
+        //         title: document.getElementById('updateMovieTitle').value,
+        //         description: document.getElementById('updateMovieDescription').value,
+        //         poster_url: document.getElementById('updatePosterUrl').value,
+        //         release_date: document.getElementById('updateReleaseDate').value
+        //     };
+
+        //     // Send a PUT request to the API to update the movie
+        //     await fetch(`${url}/movies/${movieId}`, {
+        //         method: 'PUT',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(updatedMovie)
+        //     });
+
+        //     // Fetch the updated movie list from the API
+        //     const response = await fetch(`${url}/movies`);
+        //     const updatedMovies = await response.json();
+
+        //     // Update the local storage with the updated movie list
+        //     localStorage.setItem("movies", JSON.stringify(updatedMovies));
+
+        //     // Regenerate the table to display the updated movie list
+        //     generateTableMovies(updatedMovies);
+
+        //     // Hide the update movie modal
+        //     const updateMovieModal = bootstrap.Modal.getOrCreateInstance("#updateMovieModal");
+        //     updateMovieModal.hide();
+        // };
+
+        //New code for edit - end
+
+        //Old code
         // Function to open the new movie modal
         const openNewMovieModal = () => {
             const newMovieModal = bootstrap.Modal.getOrCreateInstance("#newMovieModal")
@@ -399,7 +472,7 @@
             const release_date = document.getElementById('release_date').value
             const poster_url = document.getElementById('poster_url').value
 
-            // Send a POST request to create a new movie
+            //     // Send a POST request to create a new movie
             fetch(`${url}/movies`, {
                 method: 'POST',
                 headers: {
@@ -418,11 +491,11 @@
                     const newMovieModal = bootstrap.Modal.getOrCreateInstance("#newMovieModal")
                     newMovieModal.hide()
 
-                    // Remove movies from localStorage and refresh the movie list
+                    //             // Remove movies from localStorage and refresh the movie list
                     localStorage.removeItem("movies")
                     getMovies()
 
-                    // Clear form input fields
+                    //             // Clear form input fields
                     document.getElementById('title').value = ''
                     document.getElementById('description').value = ''
                     document.getElementById('release_date').value = ''
@@ -432,6 +505,9 @@
                     console.log(error)
                 })
         })
+        // old code - end
+
+
 
         // Event listeners for the delete movie buttons
         const deleteMovieButtons = document.querySelectorAll('.deleteMovieButton')
